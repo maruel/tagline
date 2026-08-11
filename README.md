@@ -58,4 +58,4 @@ then read the same instructions from one source of truth.
 
 ## Example
 
-See the root [AGENTS.md](AGENTS.md) for a current generated index.
+See the root [AGENTS.md](AGENTS.md?plain=1) for a current generated index.
