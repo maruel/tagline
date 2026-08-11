@@ -3,16 +3,16 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-"""Update AGENTS.md files (containing a file index marker) with an auto-generated index.
+"""Maintain the generated file index in AGENTS.md files.
 
-To opt-in a directory, add these two markers to its AGENTS.md:
+To opt in a directory, add these two markers to its AGENTS.md:
 
     <!-- BEGIN FILE INDEX -->
     <!-- END FILE INDEX -->
 
-The script auto-discovers all AGENTS.md files tracked by git that contain the
-markers, generates a file index from first-line comments, and injects it between
-the markers. It also ensures a CLAUDE.md symlink exists next to every AGENTS.md.
+The script discovers tracked AGENTS.md files containing the markers, generates
+an index from source-file comments, and injects it between the markers. It also
+ensures each tracked AGENTS.md has a sibling CLAUDE.md -> AGENTS.md symlink.
 """
 
 import argparse

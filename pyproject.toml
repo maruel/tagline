@@ -1,8 +1,8 @@
-# Project and tooling configuration for Tagline.
+# Project and tooling configuration for agents-file-index.
 [project]
-name = "tagline"
+name = "agents-file-index"
 version = "0.1.0"
-description = "Maintains file indexes in AGENTS.md files."
+description = "Maintains generated file indexes in AGENTS.md files."
 requires-python = ">=3.10"
 
 [tool.ruff]
