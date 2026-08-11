@@ -1,0 +1,12 @@
+# Project and tooling configuration for Tagline.
+[project]
+name = "tagline"
+version = "0.1.0"
+description = "Maintains file indexes in AGENTS.md files."
+requires-python = ">=3.10"
+
+[tool.ruff]
+target-version = "py310"
+
+[tool.ruff.lint]
+extend-select = ["I"]
