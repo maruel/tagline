@@ -24,4 +24,7 @@ jobs:
       - uses: astral-sh/ruff-action@v4.1.0
         with:
           args: check .
+      - name: Install Pylint
+        run: python -m pip install --disable-pip-version-check pylint==4.0.7
+      - run: pylint .
       - run: python update_agents_file_index.py --check
