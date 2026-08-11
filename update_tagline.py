@@ -86,6 +86,7 @@ def get_file_description(filepath):
         "*.cjs": "//",
         "*.css": "/*",
         "*.go": "//",
+        "*.h": "//",
         "*.js": "//",
         "*.kt": "//",
         "*.md": "#",
@@ -93,6 +94,9 @@ def get_file_description(filepath):
         "*.py": "#",
         "*.sh": "#",
         "*.swift": "//",
+        "*.service": "#",
+        "*.timer": "#",
+        "*.toml": "#",
         "*.ts": "//",
         "*.tsx": "//",
         "*.yaml": "#",
@@ -117,7 +121,7 @@ def get_file_description(filepath):
         if not sline:
             in_copyright = False
             continue
-        if fname.endswith(".py") and (sline.startswith('"""') or sline.startswith("'''")):
+        if fname.endswith(".py") and sline.startswith(('"""', "'''")):
             return _py_docstring(lines, i)
         if prefix == "/*" and sline.startswith(prefix):
             return _c_style_block_comment(lines, i)
@@ -143,8 +147,8 @@ def get_file_description(filepath):
             continue
         # Skip PEP 723 inline script metadata fields (requires-python, dependencies, etc.)
         # that appear between # /// script and # /// markers.
-        if fname.endswith(".py") and (
-            sline.startswith(f"{prefix} requires-") or sline.startswith(f"{prefix} dependencies")
+        if fname.endswith(".py") and sline.startswith(
+            (f"{prefix} requires-", f"{prefix} dependencies")
         ):
             continue
         if sline.startswith(prefix):
@@ -208,9 +212,8 @@ def generate_index(target, exclude, all_files, all_configs):
         if "testdata" in rel_parts:
             continue
         # A file is excluded if its path starts with any excluded prefix.
-        if any(relpath.startswith(ex + "/") or relpath == ex for ex in exclude):
-            if filepath not in all_configs:
-                continue
+        if any(relpath.startswith(ex + "/") or relpath == ex for ex in exclude) and filepath not in all_configs:
+            continue
         desc = get_file_description(filepath)
         if desc is None:
             continue  # file type has no comment convention
