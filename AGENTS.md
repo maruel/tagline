@@ -1,3 +1,23 @@
+# agents-file-index
+
+## Development
+
+- Target Python 3.10 or later.
+- When changing tracked files or their opening descriptions, run
+  `python3 update_agents_file_index.py` to regenerate file indexes.
+- Do not edit the generated content between the file-index markers.
+
+## Validation
+
+Run these checks before submitting changes:
+
+```bash
+ruff check .
+pylint .
+actionlint .github/workflows/ci.yml
+python3 update_agents_file_index.py --check
+```
+
 <!-- BEGIN FILE INDEX -->
 ## File Index
 
